@@ -22,12 +22,7 @@ ext {
     set('testcontainersVersion', "1.17.6")
 }
 
-java {
-    toolchain {
-        vendor.set(JvmVendorSpec.AMAZON)
-        languageVersion.set(JavaLanguageVersion.of(17))
-    }
-}
+java { toolchain { languageVersion.set(JavaLanguageVersion.of(17)) } }
 
 dependencies {
     runtimeOnly 'org.postgresql:postgresql'
