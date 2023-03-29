@@ -1,0 +1,20 @@
+### Server ###
+server:
+  port: 8080
+  servlet:
+    context-path: "/jpa-dictionary-poc"
+### Spring ###
+spring:
+  jpa:
+    show-sql: on
+    open-in-view: off
+    properties:
+      hibernate:
+        format_sql: on
+        highlight_sql: on
+        use_sql_comments: off
+        generate_statistics: off
+  datasource:
+    username: "dictionary-db-user"
+    password: "dictionary-db-password"
+    url: "jdbc:postgresql://localhost:5656/dictionary_db"

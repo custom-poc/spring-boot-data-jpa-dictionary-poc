@@ -1,0 +1,17 @@
+services:
+
+  dictionary-db:
+    ports:
+      - "127.0.0.1:5656:5432"
+    image: postgres:15
+    container_name: dictionary-db-container
+    environment:
+      POSTGRES_DB: dictionary_db
+      POSTGRES_USER: dictionary-db-user
+      POSTGRES_PASSWORD: dictionary-db-password
+    networks:
+      - spring-boot-data-jpa-dictionary-poc-network
+
+networks:
+  spring-boot-data-jpa-dictionary-poc-network:
+    name: spring-boot-data-jpa-dictionary-poc-network
