@@ -1,4 +1,4 @@
-package com.poc.dictionary.domain.model;
+package com.poc.dictionary.domain.spi;
 
 import org.springframework.data.domain.Persistable;
 

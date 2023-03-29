@@ -12,4 +12,6 @@ public interface InternalDictionaryHandler {
 
     InternalDictionaryDto getById(UUID id, InternalDictionaryType dictionaryType);
 
+    List<InternalDictionaryDto> getAllByRelationId(UUID relationId, InternalDictionaryType dictionaryType);
+
 }

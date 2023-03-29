@@ -1,5 +1,6 @@
 package com.poc.dictionary.domain.model;
 
+import com.poc.dictionary.domain.base.BaseModel;
 import jakarta.persistence.*;
 
 import java.util.Optional;
@@ -18,6 +19,9 @@ public class InternalDictionary extends BaseModel {
     private String caption;
     @Column(name = "description")
     private String description;
+    @JoinColumn(name = "relation_id")
+    @ManyToOne(fetch = FetchType.LAZY)
+    private InternalDictionary relation;
 
     public Long getPriority() {
         return priority;
@@ -41,6 +45,14 @@ public class InternalDictionary extends BaseModel {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public Optional<InternalDictionary> getRelation() {
+        return Optional.ofNullable(relation);
+    }
+
+    public void setRelation(InternalDictionary relation) {
+        this.relation = relation;
     }
 
 }

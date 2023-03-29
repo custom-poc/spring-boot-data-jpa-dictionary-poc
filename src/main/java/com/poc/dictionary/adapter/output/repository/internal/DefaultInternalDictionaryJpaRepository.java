@@ -2,10 +2,11 @@ package com.poc.dictionary.adapter.output.repository.internal;
 
 import com.poc.dictionary.adapter.output.repository.InternalDictionaryJpaRepository;
 import com.poc.dictionary.core.enumeration.InternalDictionaryType;
+import com.poc.dictionary.domain.base.BaseModel_;
 import com.poc.dictionary.domain.model.InternalDictionary;
+import com.poc.dictionary.domain.model.InternalDictionary_;
 import jakarta.persistence.EntityManager;
-import jakarta.persistence.criteria.CriteriaBuilder;
-import jakarta.persistence.criteria.CriteriaQuery;
+import jakarta.persistence.criteria.*;
 import org.hibernate.jpa.HibernateHints;
 import org.springframework.lang.NonNull;
 import org.springframework.transaction.annotation.Transactional;
@@ -68,6 +69,18 @@ public class DefaultInternalDictionaryJpaRepository<M extends InternalDictionary
     @Transactional(readOnly = true)
     public Optional<M> findById(final UUID id) {
         return Optional.ofNullable(entityManager.find(modelClass, id));
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<M> findAllByRelationId(final UUID relationId) {
+        final CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
+        final CriteriaQuery<M> query = criteriaBuilder.createQuery(modelClass);
+        final Root<M> root = query.from(modelClass);
+        final Path<UUID> relationIdPath = root.join(InternalDictionary_.relation).get(BaseModel_.id);
+        return entityManager.createQuery(query.select(root).where(criteriaBuilder.equal(relationIdPath, relationId)))
+                .setHint(HibernateHints.HINT_READ_ONLY, Boolean.TRUE)
+                .getResultList();
     }
 
     @Override

@@ -39,4 +39,11 @@ public class InternalDictionaryControllerImpl implements InternalDictionaryContr
         return handler.getAll(dictionaryType);
     }
 
+    @Override
+    @GetMapping("/{dictionaryType}/relation/{relationId}")
+    public List<InternalDictionaryDto> getAllByRelationId(@PathVariable final UUID relationId,
+                                                          @PathVariable final InternalDictionaryType dictionaryType) {
+        return handler.getAllByRelationId(relationId, dictionaryType);
+    }
+
 }

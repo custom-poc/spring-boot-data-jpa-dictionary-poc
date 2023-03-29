@@ -6,8 +6,9 @@ import static java.util.Arrays.stream;
 
 public enum InternalDictionaryType {
 
-    APPEAL_REASON(Constants.APPEAL_REASON),
-    PROVIDER_REGISTRATION_REJECTION_REASON(Constants.PROVIDER_REGISTRATION_REJECTION_REASON);
+    PROVIDER_APPEAL_REASON(Constants.PROVIDER_APPEAL_REASON),
+    PROVIDER_APPEAL_VIOLATION_REASON(Constants.PROVIDER_APPEAL_VIOLATION_REASON),
+    PROVIDER_APPEAL_REJECTION_REASON(Constants.PROVIDER_APPEAL_REJECTION_REASON);
 
     private final String discriminator;
 
@@ -29,8 +30,9 @@ public enum InternalDictionaryType {
 
     public static final class Constants {
 
-        public static final String APPEAL_REASON = "appeal-reason";
-        public static final String PROVIDER_REGISTRATION_REJECTION_REASON = "provider-registration-rejection-reason";
+        public static final String PROVIDER_APPEAL_REASON = "provider-appeal-reason";
+        public static final String PROVIDER_APPEAL_VIOLATION_REASON = "provider-appeal-violation-reason";
+        public static final String PROVIDER_APPEAL_REJECTION_REASON = "provider-appeal-rejection-reason";
 
         private Constants() {
             // Suppresses default constructor

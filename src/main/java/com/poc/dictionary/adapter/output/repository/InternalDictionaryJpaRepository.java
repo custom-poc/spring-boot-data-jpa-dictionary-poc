@@ -17,6 +17,8 @@ public interface InternalDictionaryJpaRepository<M extends InternalDictionary> {
 
     Optional<M> findById(UUID id);
 
+    List<M> findAllByRelationId(UUID relationId);
+
     InternalDictionaryType internalDictionaryType();
 
 }

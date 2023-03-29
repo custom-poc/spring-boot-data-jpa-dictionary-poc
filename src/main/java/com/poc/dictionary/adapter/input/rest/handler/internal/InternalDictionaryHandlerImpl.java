@@ -39,4 +39,12 @@ public class InternalDictionaryHandlerImpl implements InternalDictionaryHandler 
         return converter.convert(manager.service(dictionaryType).loadById(id));
     }
 
+    @Override
+    @Transactional(readOnly = true)
+    public List<InternalDictionaryDto> getAllByRelationId(final UUID relationId, final InternalDictionaryType dictionaryType) {
+        return manager.service(dictionaryType).loadAllByRelationId(relationId).stream()
+                .map(converter::convert)
+                .toList();
+    }
+
 }

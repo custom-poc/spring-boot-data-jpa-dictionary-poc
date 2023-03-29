@@ -1,5 +1,6 @@
-package com.poc.dictionary.domain.model;
+package com.poc.dictionary.domain.base;
 
+import com.poc.dictionary.domain.spi.Identifiable;
 import jakarta.persistence.Column;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
@@ -18,6 +19,10 @@ public abstract class BaseModel implements Identifiable {
     @Override
     public UUID getId() {
         return id;
+    }
+
+    public void setId(final UUID id) {
+        this.id = id;
     }
 
 }

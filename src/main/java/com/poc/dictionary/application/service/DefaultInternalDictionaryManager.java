@@ -10,8 +10,10 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Map;
-import java.util.function.Function;
-import java.util.stream.Collectors;
+
+import static com.poc.dictionary.core.spi.InternalBinaryOperator.first;
+import static java.util.function.Function.identity;
+import static java.util.stream.Collectors.toUnmodifiableMap;
 
 @Service
 public class DefaultInternalDictionaryManager implements InternalDictionaryManager {
@@ -21,7 +23,7 @@ public class DefaultInternalDictionaryManager implements InternalDictionaryManag
     @Autowired
     public <M extends InternalDictionary> DefaultInternalDictionaryManager(@NonNull final List<InternalDictionaryService<M>> services) {
         this.internalDictionaryServiceMap = services.stream()
-                .collect(Collectors.toMap(InternalDictionaryService::internalDictionaryType, Function.identity()));
+                .collect(toUnmodifiableMap(InternalDictionaryService::dictionaryType, identity(), first()));
     }
 
     @Override

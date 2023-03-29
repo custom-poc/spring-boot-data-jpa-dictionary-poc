@@ -55,7 +55,13 @@ public class DefaultInternalDictionaryService<M extends InternalDictionary> impl
     }
 
     @Override
-    public InternalDictionaryType internalDictionaryType() {
+    @Transactional(readOnly = true)
+    public List<M> loadAllByRelationId(final UUID relationId) {
+        return repository.findAllByRelationId(relationId);
+    }
+
+    @Override
+    public InternalDictionaryType dictionaryType() {
         return repository.internalDictionaryType();
     }
 

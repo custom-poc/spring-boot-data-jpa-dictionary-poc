@@ -16,6 +16,8 @@ public interface InternalDictionaryService<M extends InternalDictionary> {
 
     Boolean deleteById(UUID id);
 
-    InternalDictionaryType internalDictionaryType();
+    List<M> loadAllByRelationId(UUID relationId);
+
+    InternalDictionaryType dictionaryType();
 
 }
