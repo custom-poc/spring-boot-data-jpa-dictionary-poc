@@ -6,8 +6,7 @@ plugins {
 }
 
 group = 'com.poc'
-version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '17'
+version = '0.0.1'
 
 configurations {
     compileOnly {
@@ -21,6 +20,13 @@ repositories {
 
 ext {
     set('testcontainersVersion', "1.17.6")
+}
+
+java {
+    toolchain {
+        vendor.set(JvmVendorSpec.AMAZON)
+        languageVersion.set(JavaLanguageVersion.of(17))
+    }
 }
 
 dependencies {
